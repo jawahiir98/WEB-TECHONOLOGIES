@@ -1,0 +1,25 @@
+<?php
+	$uerror = "";
+	$name = "";
+
+	if(isset($_REQUEST['submit'])){
+		
+		if($_REQUEST['name'] == null){
+			$uerror  = "Enter valid Name";
+		}else{
+			$name = $_REQUEST['name'];
+		}
+	}
+	echo $name;
+?>
+<html> 
+	<head> </head>
+	<body> 
+		<br> <br> <br>
+		<form action = "#" method = "POST"> 
+			Name : <br>
+			<input type = "text" name = "name" value = ""> <br>
+			<input type="submit" name="submit" value="Submit">
+		</form>
+	</body>
+</html>
