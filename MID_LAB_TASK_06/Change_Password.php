@@ -56,18 +56,22 @@
 				</table>
 			</td>
 			<td width = "100%" align = "center">
-				<fieldset style = "width: 65%">
-						<legend>Change Profile Picture</legend>
+				<form method = "POST" action = "Change_Password_validate.php">
+					<fieldset style = "width: 65%">
+						<legend>Change Password</legend>
 						<table align = "left" style="width : 100%">
-							<tr> 
-								<td> <img src=""> </td>
-							</tr>
-							<tr rowspan = "3">
-								<td> <img src=""> </td>
-							</tr>
 							<tr>
-								<td><input type="file" name="browse"></td>
-							</tr>
+								<td> Current Password </td>
+								<td> : <input type="password" name="curpass" > </td>
+	 						</tr>
+	 						<tr>
+	 							<td> New Password </td>
+	 							<td> : <input type="password" name="newpass" > </td>
+	 						</tr>
+	 						<tr>
+	 							<td> Retype Password </td>
+	 							<td> : <input type="password" name="retypepass" > </td>
+	 						</tr>
 							<tr>
 								<td> <hr width = "100%" noshade="noshade" > </td>
 							</tr>
@@ -76,6 +80,7 @@
 							</tr>
 						</table>
 					</fieldset>
+				</form>
 			</td>
 		</tr>
 	</table>
