@@ -16,7 +16,7 @@
 <html>
 <head>
 	<title>Agent Portfolio</title>
-
+	<a href="Homepage.php">Home| </a> <a href="Agency_Dashboard.php"> Dashboard| </a> <a href = "../Controller/logout.php">Logout </a>
 </head>
 <body>
 	<fieldset>
@@ -48,8 +48,11 @@
 				<tr>
 					<td>Rating:  <?=$agent[4]?></td>
 				</tr>
-		
-				</table>			</td>
+				<tr>
+					<td>Hiring Rate:  <?=$agent[7]?></td>
+				</tr>
+				</table>			
+			</td>
 			<td>
 				<table width="700">
 					<tr>

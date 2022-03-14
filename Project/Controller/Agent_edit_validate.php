@@ -9,8 +9,9 @@
 		$number =  $_REQUEST['number'];
 		$rating =  $_REQUEST['rating'];
 		$expert =  $_REQUEST['expert'];
+		$rate = $_REQUEST['rate'];
 		$id = $_REQUEST['id'];
-		if($agentname == "" or $email== "" or $address == "" or $number == "" or $rating == "" or $expert == "")
+		if($agentname == "" or $email== "" or $address == "" or $number == "" or $rating == "" or $expert == "" or $rate == "")
 		{
 			echo "Fields cannot be left empty";
 		}
@@ -29,7 +30,7 @@
 				}
 			}
 			fclose($file);
-			$add = $agentname."|".$email."|".$address."|".$number."|".$rating."|".$expert."|".$id;
+			$add = $agentname."|".$email."|".$address."|".$number."|".$rating."|".$expert."|".$id."|".$rate."\r\n";
 			$file = '../Model/agent.txt';
 			file_put_contents($file,str_replace($found, $add,file_get_contents($file)));
 

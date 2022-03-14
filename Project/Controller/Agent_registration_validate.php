@@ -9,6 +9,7 @@
 		$number = $_REQUEST['num'];
 		$expert = $_REQUEST['expert'];
 		$rating = 0.0;
+		$rate = $_REQUEST['rate'];
 		$file = fopen('../Model/agent.txt', 'r');
 		$id = 1;
 		while (!feof($file)) {
@@ -19,7 +20,7 @@
 		}
 		$id += 1;
 		fclose($file);
-		if($agentname == "" or $email == "" or $number == "" or $address == "")
+		if($agentname == "" or $email == "" or $number == "" or $address == "" or $rate == null)
 		{
 			echo "Fields cannot be empty";
 		}
@@ -28,7 +29,7 @@
 			$expert = "None";
 		}
 		$file = fopen('../Model/agent.txt', 'a');
-		$agent = $agentname."|".$email."|".$address."|".$number."|".$rating."|".$expert."|".$id."\r\n";
+		$agent = $agentname."|".$email."|".$address."|".$number."|".$rating."|".$expert."|".$id."|".$rate."\r\n";
 
 		//print($agent);
 		fwrite($file, $agent);

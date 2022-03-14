@@ -22,7 +22,7 @@
 		else
 		{
 			$file = fopen('../Model/agency.txt', 'r');
-
+			$tmp = fopen('../Model/tmp.txt', 'w');
 			while(!feof($file))
 			{
 				$get_agency = fgets($file);

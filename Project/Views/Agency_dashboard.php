@@ -36,6 +36,7 @@
 							<li> <a href = "Agency_messages.php"> Messages </a> </li>
 							<li> <a href = "Agency_agents.php"> Agents </a> </li>
 							<li> <a href = "Add_agents.php"> Add Agent </a> </li>
+							<li> <a href = "Travel.php"> Travel Management </a> </li>
 						</ul>
 					</tr>
 				</table>

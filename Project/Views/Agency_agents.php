@@ -1,6 +1,6 @@
 <html>
 <head>
-	
+	<a href="Homepage.php">Home| </a> <a href="Agency_Dashboard.php"> Dashboard| </a> <a href = "../Controller/logout.php">Logout </a>
 </head>
 <body>
 	<br><br><br>
@@ -49,6 +49,11 @@
 		<tr>
 			<td>Rating</td>
 			<td>: <input type = "text" name = "rating" value =" <?=$agent[4]?>" readonly></td>
+			<td> </td>
+		</tr>
+		<tr>
+			<td>Hiring Rate</td>
+			<td>: <input type = "text" name = "rate" value =" <?=$agent[7]?>" readonly></td>
 			<td> </td>
 		</tr>
 		<tr>

@@ -44,7 +44,13 @@
 								<td> Agent's Fields of expertise </td>
 								<td>: <input type = "text" name = "expert" value = ""> </td>
 							</tr>
-
+							<tr >
+								<td>Hiring Rate </td>
+								<td>: <input type="text" name="rate" value=""> </td>
+							</tr>
+							<tr>
+								<td> <br></td>
+							</tr>
 							<tr>
 								<td> <br></td>
 							</tr>

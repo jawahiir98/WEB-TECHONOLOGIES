@@ -18,6 +18,7 @@
 	$number = $agent[3];
 	$rating = $agent[4];
 	$expert = $agent[5];
+	$rate = $agent[7];
 ?>
 <html>
 <head>
@@ -70,6 +71,14 @@
 				<tr>
 					<td width = "30%"> Rating </td>
 					<td >: <input type = "text" name = "rating" value = "<?= $rating?>"></td>
+					<td> </td>
+				</tr>
+				<tr>
+					 <td> <hr width = "100%" noshade="noshade" > </td>
+				</tr>
+				<tr>
+					<td width = "30%"> Hiring Rate </td>
+					<td >: <input type = "text" name = "rate" value = "<?= $rate?>"></td>
 					<td> </td>
 				</tr>
 				<tr>
