@@ -6,7 +6,7 @@
 </head>
 <body>
 	<br><br><br><br>
-	<form method = "POST" action = "Cost_validate.php">
+	<form method = "POST" action = "../Controller/Addcost_validate.php">
 		<table>
 			<tr>
 				<td>
@@ -31,6 +31,15 @@
 						<tr>
 							<td> Cost</td>
 							<td> <input type="text" name="cost"> </td> 
+							<td> <input type="submit" name="submit" value = "Enter"> </td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td> Distance</td>
+							<td> <input type="text" name="dis"> </td> 
 							<td> <input type="submit" name="submit" value = "Enter"> </td>
 						</tr>
 					</table>

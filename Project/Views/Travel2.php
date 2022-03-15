@@ -25,8 +25,7 @@
 	<br><br><br> 
 	<table align = "center" >
 		<tr>
-			<td> <a align = "center" href = "Travel.php"> Sort By Agent Rating| </a> </td>
-			<td> <a align = "center" href = "Cost.php"> View travel costs </a> </td> 
+			<td> <a align = "center" href = "Travel.php"> Sort Agent By Rating | </a> </td>
 		</tr>
 		<tr>
 			 <td colspan="3"> <hr width = "100%" noshade="noshade" > </td>
@@ -89,5 +88,43 @@
 		?>
 	</form>
 	</table>
+	<br> <br>
+	<fieldset  align = "center">
+	<table border = '1' align = "center">
+		<legend>Travel Costing Info.</legend>
+		<tr height = "40">
+			<th width = "110"> From </th>
+			<th width = "110"> To </th>
+			<th width = "110"> Distance </th>
+			<th width = "110"> Cost </th>
+		</tr>
+		<?php 
+			$file = fopen('../Model/mapwithcost.txt', 'r');
+			$cnt = 0;
+			while(!feof($file))
+			{
+				$string = fgets($file);
+				if($string == "") continue;
+				$inf = explode('|', $string);
+
+		?>
+		<tr height = "30">
+			<td> <?=$inf[0]?> </td>
+			<td> <?=$inf[1]?> </td>
+			<td> <?=$inf[2]?> </td>
+			<td> <?=$inf[3]?> </td>
+			<td> 
+				<a href = "Addcost.php?mid=<?=$inf[4]?>"> Insert Cost| </a> 
+				<a href = "Editcost.php?mid=<?=$inf[4]?>"> Update Cost| </a> 
+				<a href = "Deletecost.php?mid=<?=$inf[4]?>"> Delete Cost </a>
+			</td>
+		</tr>
+		<?php
+
+			 //echo "\n";
+			}
+		?>
+	</table>
+	</fieldset>
 </body>
 </html>>
