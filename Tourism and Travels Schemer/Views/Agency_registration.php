@@ -1,7 +1,23 @@
 <html>
 <head>
+
+	<style>
+		 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+		.table{
+			height: 400px;
+			width: 100%;
+			display: justify;
+		}
+		.head{
+			height: 200px;
+		}
+		.table-content{
+			width: auto;
+			font-family: 'Poppins', sans-serif;
+		}
+	</style>
 	<title>Registration Page</title>
-	<table  width = "100%"> 
+	<table class = "head" > 
 		<tr>
 			<td> 
 				<h5 align = "left">
@@ -12,11 +28,12 @@
 	</table>
 </head>
 <body>
-	<table height = "60%" width = "100%" >
+	<div class = "table">
+		<table align = "center">
 		<tr align = "left">
 			<td> 
 				<form method="POST" action="../Controller/Agency_registration_validate.php">
-					<fieldset align="center" style = "width: 35%">
+					<fieldset align="center" class = "table-content">
 						<legend>REGISTRATION</legend>
 						<table align="center">
 							<tr >
@@ -62,15 +79,24 @@
 								<td> <br></td>
 							</tr>
 							<tr>
+								<td> Agency Logo </td>
+								<td>: <input type = "file" name = "logo" value = ""> </td>
+							</tr>
+							<tr>
+								<td> <br></td>
+							</tr>
+							<tr>
 								<td colspan = "3"> 
 									<input type = "submit" name = "submit" value = "Submit">
 								</td>
 							</tr>
+
 						</table>
 					</fieldset>
 				</form>
 			</td>
 		</tr>
 	</table>
+	</div>
 </body>
 </html>

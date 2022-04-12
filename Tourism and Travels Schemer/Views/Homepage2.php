@@ -46,17 +46,18 @@
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 		#div1{
-			background-color: royalblue;
+			background: linear-gradient(to right, rgb(40, 173, 147), rgba(204, 229, 255, 0.4));
 			height:  60px;
-			font-family: "Lucida Console", "Courier New", monospace;
+			font-size: 1.0em;
+			font-family: "Lato", sans-serif;
 			padding-top: 10px;
 		}
 		#img1{
 			border: 2px solid black;
-			background-image: url(../Image/img1.jpg);
+			background-image: url(../Image/Image01.jpg);
 			background-size: auto;
-			width: 300px;
-			height:  300px;
+			width: 900px;
+			height:  400px;
 		}
 		li {
 		    list-style: none;
@@ -66,11 +67,14 @@
 		}
 		.navbar{
 			width: 400px;
-			padding-left: 300px;
+			padding-left: 850px;
 			font-family: 'Poppins', sans-serif;
 			font-size: 20px;
 			justify-content: space-around;
 			color: salmon;
+			display:  flex;
+			flex-direction: column;
+			align-items: center;
 		}
 		li :hover {
 		    position: relative;
@@ -81,7 +85,12 @@
 			text-decoration: none;
 			color: black;
 		}
-		
+		#foot{
+			padding-left: 40px;
+			font-size:  15px;
+			height: 50px;
+			width: 250px;
+		}
 	</style>
 	<div>
 		<div width = "20%"> </div>
@@ -92,7 +101,7 @@
 	<div id = "img1">
 		<div>
 			<nav class = "navbar" align = "center" >
-				<h3 > Dashboard </h3> 
+				<h3 style = "padding-left:  20px;"> Dashboard </h3> 
 				<ul> 
 					<li> <a href = "Agency_profile.php"> View Profile </a> </li>
 					<li> <a href = "Agency_edit_profile.php"> Edit Profile </a> </li>
@@ -101,6 +110,12 @@
 					<li> <a href = "Add_agents.php"> Add Agent </a> </li>
 					<li> <a href = "Travel.php"> Travel Management </a> </li>
 				</ul>
+				<div> 
+					<div id = "admin"style = "width:  auto; padding-left: 50px;"> 
+						<img src = "../Image/msgicon.png">
+						<a href = "" id = "foot">Contact An Admin </a>
+					 </div>
+				</div>
 			</nav>
 		</div>
 	</div>
