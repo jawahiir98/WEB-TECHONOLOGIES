@@ -25,8 +25,25 @@
 	}
 		
 
-	function signup()
-	{
-		
-	}	
+	function signup($name, $username, $email, $password, $contact, $logo){
+		$con = connection();
+		$ssql = "select * from agencies";
+		$id = 1;
+		$res = mysqli_query($con, $ssql);
+		if(mysqli_num_rows($res)){
+			while($row = mysqli_fetch_assoc($res)){
+				$temp = $row['agencyid'];
+				$id = max($id, $temp);
+				print_r($row);
+			}
+			$id += 1;
+		}
+		$sql = "insert into agencies values ('{$id}','{$name}','{$email}','{$contact}','{$username}','{$password}','{$logo}')";
+		if(mysqli_query($con, $sql))
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
 ?>

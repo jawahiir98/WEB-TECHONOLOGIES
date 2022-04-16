@@ -1,102 +1,78 @@
 <html>
 <head>
-
-	<style>
-		 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-		.table{
-			height: 400px;
-			width: 100%;
-			display: justify;
-		}
-		.head{
-			height: 200px;
-		}
-		.table-content{
-			width: auto;
-			font-family: 'Poppins', sans-serif;
-		}
-	</style>
+	
+	<link rel="stylesheet" type="text/css" href="../Assert/Agency_form.css">
 	<title>Registration Page</title>
-	<table class = "head" > 
-		<tr>
-			<td> 
-				<h5 align = "left">
-				<a href="../Views/Homepage.php"> Home|</a> <a href="../Views/Homepage.php"> Sign In</a> 
-				</h5> 
-			</td>
-		</tr>
-	</table>
+	<script type="text/javascript" src="../Assert/Agency_registration.js"></script>
 </head>
 <body>
-	<div class = "table">
-		<table align = "center">
-		<tr align = "left">
-			<td> 
-				<form method="POST" action="../Controller/Agency_registration_validate.php">
-					<fieldset align="center" class = "table-content">
-						<legend>REGISTRATION</legend>
-						<table align="center">
-							<tr >
-								<td>Agency Name </td>
-								<td>: <input type="text" name="agencyname" value=""> </td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr >
-								<td>Email </td>
-								<td>: <input type="text" name="email" value=""> </td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr >
-								<td>Username </td>
-								<td>: <input type="text" name="username" value="" > </td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr >
-								<td>Password </td>
-								<td>: <input type="password" name="password" value=""> </td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr >
-								<td>Confirm Password </td>
-								<td>: <input type="password" name="confirm" value=""> </td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr>
-								<td> Address </td>
-								<td>: <input type = "text" name = "address" value = ""> </td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr>
-								<td> Agency Logo </td>
-								<td>: <input type = "file" name = "logo" value = ""> </td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr>
-								<td colspan = "3"> 
-									<input type = "submit" name = "submit" value = "Submit">
-								</td>
-							</tr>
-
-						</table>
-					</fieldset>
-				</form>
-			</td>
-		</tr>
-	</table>
+	
+	<div class="header">
+		<div class="container">
+		<div class = "head-container">
+		<h5 align = "left">
+			<a href="../Views/Homepage.php"> Home|</a> <a href="../Views/Homepage.php"> Sign In</a> 
+		</h5> 
 	</div>
+		<h2>Agency Registration</h2>
+	</div>
+	<form id="form" class="form" name = "regform" onsubmit="return validation()"  method = "POST" action = "../Controller/Agency_registration_validate.php"><br>
+
+		<div class="form-control">
+
+			<label for="username">Agency name</label>
+			<input type="text" id="agencyname" name = "agencyname" value = ""><br>
+			<span id = "show"> </span>
+
+		</div>
+
+		<div class="form-control">
+
+			<label for="username">Contact</label>
+			<input type="text" id="contcat"  name = "contact" ><br>
+			<span id = "show1"> </span>
+
+		</div>
+
+		<div class="form-control">
+
+			<label for="username">Username</label>
+			<input type="text" id="username"  name = "username" ><br>
+			<span id = "show2"> </span>
+
+		</div>
+
+		<div class="form-control">
+
+			<label for="username">Email</label>
+			<input type="email"  id="email" name = "email" ><br>
+			<span id = "show3"> </span>
+			
+		</div>
+
+		<div class="form-control">
+
+			<label for="username">Password</label>
+			<input type="password"  id="password" name = "password"> <br>
+			<span id = "show4"> </span>
+			
+		</div>
+		<div class="form-control">
+
+			<label for="username">Confirm Password</label>
+			<input type="password"  id="password2" name = "password2"> <br>
+			<span id = "show5"> </span>
+			
+		</div>
+		<div class="form-control">
+
+			<label for="username">Logo</label>
+			<input type="file" id="logo" name = "logo"> <br>
+			<span id = "show6"> </span>
+			
+		</div>
+		<input type ="submit" name = "submit" class = "button" value = "Submit"> 
+	</form>
+</div>
 </body>
 </html>
