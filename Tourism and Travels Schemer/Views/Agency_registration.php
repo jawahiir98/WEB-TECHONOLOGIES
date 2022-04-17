@@ -29,7 +29,7 @@
 		<div class="form-control">
 
 			<label for="username">Contact</label>
-			<input type="text" id="contcat"  name = "contact" ><br>
+			<input type="text" id="contact"  name = "contact" ><br>
 			<span id = "show1"> </span>
 
 		</div>

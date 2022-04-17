@@ -1,18 +1,17 @@
 <?php 
 	session_start();
+	require('../Model/AgencyModel.php');
 	//print_r($_SESSION['current_user']);
-	$current_user = $_SESSION['current_user'];
-	$username = $current_user['username'];
-	//'agencyname' => "", 'email' => "", 'username' => "", 'password' => "", 'confirm' => "","address" => ""
-	$email = $current_user['email'];
-	$agencyname = $current_user['agencyname'];
-	$password = $current_user['password'];
-	$address = $current_user['address'];
+	$current_agency = getagency($_SESSION['current_agencyid']);
+	$_SESSION['cur_agency'] = $current_agency;
+	$pic = $current_agency['logo'];
 ?>
 <html>
-<head>
-	<title>Registration Page</title>
-	<table  width = "100%"> 
+<head >
+	<title>Profile Edit Page</title>
+	<link rel="stylesheet" type="text/css" href="../Assert/Agency_edit_profile.css">
+	<script type="text/javascript" src="../Assert/Agency_edit.js"></script>
+	<table  width = "100%" style = "height:50px;padding:50px 50px;"> 
 		<tr>
 			<td> 
 				<h5 align = "left">
@@ -23,60 +22,37 @@
 	</table>
 </head>
 <body>
-	<table height = "60%" width = "100%" >
-		<tr align = "left">
-			<td>
-				<form method = "POST" action = "../Controller/Agency_edit_validate.php"> 
-					<fieldset align="center" style = "width: 35%">
-						<legend>Profile</legend>
-						<table align="center">
-							<tr>
-								<td>Agency Name: </td>
-								<td><input type ="text" name = "agencyname" value = "<?=$agencyname?>"></td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr >
-								<td>Email: </td>
-								<td><input type ="text" name = "email" value = "<?=$email?>"></td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr >
-								<td>Password: </td>
-								<td><input type ="Password" name = "password" value = "<?=$password?>"></td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr >
-								<td>Confirm Password: </td>
-								<td><input type ="Password" name = "confirm" value = "<?=$password?>"></td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr>
-								<td> Address: </td>
-								<td><input type ="text" name = "address" value = "<?=$address?>"></td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-							<tr>
-								<td> </td>
-								<td><input type ="submit" name = "save" value = "save"></td>
-							</tr>
-							<tr>
-								<td> <br></td>
-							</tr>
-						</table>
-					</fieldset>
-				</form>
-			</td>
-		</tr>
-	</table>
+	<style>
+	    #form-msg {
+	        background-color: rgb(255, 232, 232);
+	        border: 1px solid red;
+	        color: red;
+	        display: none;
+	        font-size: 12px;
+	        font-weight: bold;
+	        margin-bottom: 10px;
+	        padding: 10px 25px;
+	        max-width: 250px;
+	    }
+
+	</style>
+	<div class = "form">
+		<h6 id = "id" style = "display: none"> <?=$_SESSION['current_agencyid']?> </h6>
+		<label for = "agencyname"> Agency Name </label> <br>
+		<input type="text" id="agencyname" value ="<?=$current_agency['agencyname']?>" > <br>
+
+		<label for = "contact"> Contact </label> <br>
+		<input type="text" id="contact" value ="<?=$current_agency['contact']?>" ><br>
+
+		<label for = "email"> Email </label> <br>
+		<input type="email" id="email" value ="<?=$current_agency['email']?>" > <br>
+
+		<button type="submit" id="btn-submit" onclick = "ajax()">Save</button>
+
+		<ul id="form-msg">
+			<li> Hello </li>
+		</ul>
+	</div>
+	
 </body>
 </html>

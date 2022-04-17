@@ -1,13 +1,12 @@
 <?php
 	session_start();
-	$current_userid = $_SESSION['current_userid'];
+	$current_agencyid = $_SESSION['current_agencyid'];
 	$con = mysqli_connect('localhost', 'root', '', 'tourism and travel schemer');
-	$sql = "select * from agencies where agencyid = '{$current_userid}'";
+	$sql = "select * from agencies where agencyid = '{$current_agencyid}'";
 	$res = mysqli_query($con, $sql);
 	if($res)
 	{
 		$row =  mysqli_fetch_assoc($res);
-		//print_r($row);
 		$Username = $row['Username'];
 	}
 	else
@@ -31,7 +30,7 @@
 	<table>
 		<tr>
 			<td> </td>
-			<td>
+			<td style = "width: auto;justify-content: center;">
 				Logged in as <a href="Agency_profile.php"> <?=$Username?></a>
 			</td>
 			<td width = "90%" align = "right">
@@ -54,7 +53,7 @@
 		}
 		#img1{
 			border: 2px solid black;
-			background-image: url(../Image/Image01.jpg);
+			background-image: url(../Assert/Image/Image01.jpg);
 			background-size: auto;
 			width: 900px;
 			height:  400px;
@@ -112,7 +111,7 @@
 				</ul>
 				<div> 
 					<div id = "admin"style = "width:  auto; padding-left: 50px;"> 
-						<img src = "../Image/msgicon.png">
+						<img src = "../Assert/Image/msgicon.png">
 						<a href = "" id = "foot">Contact An Admin </a>
 					 </div>
 				</div>
