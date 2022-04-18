@@ -1,40 +1,35 @@
 <?php 
 	
 	session_start();
+	require('../Model/AgentModel.php');
 	if(isset($_REQUEST['submit']))
 	{
-		$agentname = $_REQUEST['agentname'];
-		$email =  $_REQUEST['email'];
-		$address =  $_REQUEST['address'];
-		$number =  $_REQUEST['number'];
-		$rating =  $_REQUEST['rating'];
-		$expert =  $_REQUEST['expert'];
-		$rate = $_REQUEST['rate'];
 		$id = $_REQUEST['id'];
-		if($agentname == "" or $email== "" or $address == "" or $number == "" or $rating == "" or $expert == "" or $rate == "")
-		{
-			echo "Fields cannot be left empty";
+		$agencyid = $_SESSION['current_agencyid'];
+		$name = $_REQUEST['agentname'];
+		$contact = $_REQUEST['contact'];
+		$hire = $_REQUEST['hire'];
+		$rating = $_REQUEST['rating'];
+		if($name == ""){
+			echo "Name cannot be emtpy";
 		}
-		else
-		{
-
-			$file = fopen('../Model/agent.txt', 'r');
-			$found;
-			while(!feof($file))
+		else if($contact == ""){
+			echo "Contact cannot be empty";
+		}
+		else if($hire == ""){
+			echo "Hiring rate cannot be empty";
+		}
+		else if($rating == ""){
+			echo "Rating cannot be empty";
+		}
+		else{
+			if(updateagent($id, $agencyid, $name, $contact, $hire, $rating))
 			{
-				$string = fgets($file);
-				$agent = explode('|', $string);
-				if(isset($agent[6]) and trim($agent[6]) == $id){
-					$found = $string;
-					break;
-				}
+				header('location: ../Views/Agency_agents.php');
 			}
-			fclose($file);
-			$add = $agentname."|".$email."|".$address."|".$number."|".$rating."|".$expert."|".$id."|".$rate."\r\n";
-			$file = '../Model/agent.txt';
-			file_put_contents($file,str_replace($found, $add,file_get_contents($file)));
-
-			header('location: ../Views/Agency_agents.php');
+			else{
+				echo "An error occured updating information";
+			}
 		}
 	}
 	else echo "Error";

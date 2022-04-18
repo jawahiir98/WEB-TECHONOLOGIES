@@ -1,94 +1,33 @@
 <?php 
-	$file = fopen('../Model/agent.txt', 'r');
-	$array[] = ['rating' => "", 'id' => ""];
-	$all[] = ['name'=> "",'email'=>"",'address'=>"",'number'=>"",'rating'=>"",'expert'=>"",'id'=>"",'rate'=>""];
-	//$add = $agentname."|".$email."|".$address."|".$number."|".$rating."|".$expert."|".$id."|".$rate;
-	while(!feof($file))
-	{
-		$string = fgets($file);
-		if($string == "") continue;
-		$agent = explode('|', $string);
-		array_push($array, ['rating' => $agent[4], 'id' => $agent[6]]);
-		array_push($all, [
-			'name'=> $agent[0],'email'=>$agent[1],'address'=>$agent[2],'number'=>$agent[3],
-			'rating'=>$agent[4],'expert'=>$agent[5],'id'=>$agent[6],'rate'=>$agent[7]
-		]);
-	}
-	rsort($array);
-	//print_r($all)
+	session_start();
+	require('../Model/MapModel.php');
+	$maps = getmaps($_SESSION['current_agencyid']);
+	arsort($maps);
 ?>
 <html>
 <head>
-	<a href="Homepage.php">Home| </a> <a href="Agency_Dashboard.php"> Dashboard| </a> <a href = "../Controller/logout.php">Logout </a>
+	<a href="Homepage2.php">Home| </a> <a href = "../Controller/logout.php">Logout </a>
+	<style type="text/css">
+	    a {
+	    	text-decoration: none;
+	    	color: slateblue;
+		    float: top;
+		    padding: 5px 10px;
+		}
+		li {
+		    list-style: none;
+		    float: top;
+		    display: block;
+		    padding: 5px 10px;
+		}
+		li :hover {
+		    position: relative;
+		    top: -5px; /* this will raise the element */
+		}
+	</style>
 </head>
 <body>
 	<br><br><br> 
-	<table align = "center">
-		<tr>
-		<td> <a align = "center" href = "Travel2.php"> Sort By Hiring Rate |</a> </td>
-		</tr>
-		<tr>
-			 <td colspan="3"> <hr width = "100%" noshade="noshade" > </td>
-		</tr>
-		<?php 
-			$file = fopen('../Model/agent.txt', 'r');
-			$cnt = 0;
-			foreach($array as $a){
-				foreach($all as $b){
-					if($b['id'] == "") continue;
-					//print_r($b); echo "\n";
-					if($b['id'] != $a['id']) continue;
-
-		?>
-		<form method = "POST" action = "../Controller/Direct.php">
-		<tr>
-			<td colspan = "3" align = "center"> Agent ID: <input readonly type = "text" name="id" value = "<?=$b['id']?>"></td>
-		</tr>
-		<tr>
-			<td>Name</td>
-			<td>: <input type="text" name = "agentname" value = "<?=$b['name']?> " readonly></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>Email</td>
-			<td>: <input type = "text" name = "email" value = "<?=$b['email']?>" readonly></td>
-			<td> </td>
-		</tr>
-		<tr>
-			<td>Address</td>
-			<td>: <input type = "text" name = "address" value = "<?=$b['address']?>" readonly></td>
-			<td> </td>
-		</tr>
-		<tr>
-			<td>Contact</td>
-			<td>: <input type = "text" name = "number" value = " <?=$b['number']?>" readonly></td>
-			<td> </td>
-		</tr>
-		<tr>
-			<td>Rating</td>
-			<td>: <input type = "text" name = "rating" value =" <?=$b['rating']?>" readonly></td>
-			<td> </td>
-		</tr>
-		<tr>
-			<td>Hiring Rate</td>
-			<td>: <input type = "text" name = "rate" value =" <?=$b['rate']?>" readonly></td>
-			<td> </td>
-		</tr>
-		<tr>
-			<td colspan = "3"><input size = "30" type = "text" name = "expert" value = "<?=$b['expert']?>" readonly></td>
-		</tr>
-		<tr>
-			 <td colspan="3"> <hr width = "100%" noshade="noshade" > </td>
-		</tr>
-		<?php
-
-			 //echo "\n";
-			}
-			}
-		?>
-		</form>
-	</table>
-	<br> <br>
 	<fieldset  align = "center">
 	<table border = '1' align = "center">
 		<legend>Travel Costing Info.</legend>
@@ -97,34 +36,38 @@
 			<th width = "110"> To </th>
 			<th width = "110"> Distance </th>
 			<th width = "110"> Cost </th>
+			<th> Menu</th>
 		</tr>
 		<?php 
-			$file = fopen('../Model/mapwithcost.txt', 'r');
-			$cnt = 0;
-			while(!feof($file))
-			{
-				$string = fgets($file);
-				if($string == "") continue;
-				$inf = explode('|', $string);
+			
+			foreach($maps as $inf){
 
 		?>
 		<tr height = "30">
-			<td> <?=$inf[0]?> </td>
-			<td> <?=$inf[1]?> </td>
-			<td> <?=$inf[2]?> </td>
-			<td> <?=$inf[3]?> </td>
+			<td> <?=$inf['from']?> </td>
+			<td> <?=$inf['to']?> </td>
+			<td> <?=$inf['cost']?> </td>
+			<td> <?=$inf['distance']?> </td>
 			<td> 
-				<a href = "Addcost.php?mid=<?=$inf[4]?>"> Insert Cost| </a> 
-				<a href = "Editcost.php?mid=<?=$inf[4]?>"> Update Cost| </a> 
-				<a href = "Deletecost.php?mid=<?=$inf[4]?>"> Delete Cost </a>
+				<ul>
+					<li>	
+						<a href = "Editcost.php?mid=<?=$inf['mapid']?>"> Update Cost </a> <br>
+					</li>
+					<li>
+						<a href = "Deletemap.php?mid=<?$inf['mapid']?>"> Delete Cost </a>
+					</li>
+				</ul>
 			</td>
 		</tr>
 		<?php
 
-			 //echo "\n";
 			}
 		?>
+
 	</table>
 	</fieldset>
+	<button id = "button">
+		<a href="Add_map.php">Add Information</a>
+	</button>
 </body>
 </html>

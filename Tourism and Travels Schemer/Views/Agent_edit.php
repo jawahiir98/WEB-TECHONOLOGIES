@@ -1,98 +1,63 @@
 <?php 
 	session_start();
+	require('../Model/AgentModel.php');
 	$id = $_GET['cnt'];
-	$file = fopen('../Model/agent.txt', 'r');
-	while(!feof($file)){
-		$user = fgets($file);
-		$userArray = explode('|', $user);
+	$agencyid = $_SESSION['current_agencyid'];
 
-		if(trim($userArray[6]) == $id){
-			$agent = $userArray;
-			break;
-		}
-	}	
+	$agent = getagent($id, $agencyid);
 	//print_r($agent);
-	$agentname = $agent[0];
-	$email = $agent[1];
-	$address = $agent[2];
-	$number = $agent[3];
-	$rating = $agent[4];
-	$expert = $agent[5];
-	$rate = $agent[7];
+	$name = $agent['name'];
+	$contact = $agent['contact'];
+	$rate = $agent['rating'];
+	$hire = $agent['hire'];
 ?>
 <html>
-<head>
+<head >
+	<title>Profile Edit Page</title>
+	<link rel="stylesheet" type="text/css" href="../Assert/Agency_edit_profile.css">
+	<table  width = "100%" style = "height:50px;padding:50px 50px;"> 
+		<tr>
+			<td> 
+				<h5 align = "left">
+				<a href="../Views/Homepage2.php"> Home|</a> <a href="../Views/Homepage.php"> Logout</a> 
+				</h5> 
+			</td>
+		</tr>
+	</table>
+</head>
 	
 <body>
 	<form method = "POST" action = "../Controller/Agent_edit_validate.php">
-		<fieldset style = "width: 65%">
+		<fieldset style = "width: 50%;">
 			<legend>Agent <?=$id?> Profile</legend>
-			<table align = "left" style="width : 100%">
-				<tr>
-					<td width = "30%"> Agent ID: </td>
-					<td >: <input readonly type = "text" name = "id" value = "<?= $id?>"></td>
-					<td> </td>
-				</tr>
-				<tr>
-					 <td> <hr width = "100%" noshade="noshade" > </td>
-				</tr>
-				<tr>
-					<td width = "30%"> Name</td>
-					<td >: <input type = "text" name = "agentname" value = "<?= $agentname?>"></td>
-					<td> </td>
-				</tr>
-				<tr>
-					 <td> <hr width = "100%" noshade="noshade" > </td>
-				</tr>
-				<tr>
-					<td width = "30%"> Email </td>
-					<td >: <input type = "text" name = "email" value = "<?= $email?>"></td>
-					<td> </td>
-				</tr>
-				<tr>
-					 <td> <hr width = "100%" noshade="noshade" > </td>
-				</tr>
-				<tr>
-					<td width = "30%"> Address </td>
-					<td >: <input type = "text" name = "address" value = "<?= $address?>"></td>
-					<td> </td>
-				</tr>
-				<tr>
-					 <td> <hr width = "100%" noshade="noshade" > </td>
-				</tr>
-				<tr>
-					<td width = "30%"> Contact </td>
-					<td >: <input type = "text" name = "number" value = "<?= $number?>"></td>
-					<td> </td>
-				</tr>
-				<tr>
-					 <td> <hr width = "100%" noshade="noshade" > </td>
-				</tr>
-				<tr>
-					<td width = "30%"> Rating </td>
-					<td >: <input type = "text" name = "rating" value = "<?= $rating?>"></td>
-					<td> </td>
-				</tr>
-				<tr>
-					 <td> <hr width = "100%" noshade="noshade" > </td>
-				</tr>
-				<tr>
-					<td width = "30%"> Hiring Rate </td>
-					<td >: <input type = "text" name = "rate" value = "<?= $rate?>"></td>
-					<td> </td>
-				</tr>
-				<tr>
-					 <td> <hr width = "100%" noshade="noshade" > </td>
-				</tr>
-				<tr>
-					<td colspan="3"><input size = "55" type = "text" name = "expert" value = "<?= $expert?>"></td>
-				</tr>
-				<tr>
-					 <td> <hr width = "100%" noshade="noshade" > </td>
-				</tr>
-				<tr>
-					<td > <input type = "submit" name = "submit" value = "Submit"> </td>
-				</tr>
+			<table align = "left" style="width : auto">
+				<form method = "POST" action = "../Controller/Agent_edit_validate.php">	
+					<tr>
+						<td>Agent ID:</td>
+						<td><input type="text" name="id" value = "<?=$id?>" readonly></td>
+					</tr>
+					<tr>
+						<td>Agent Name:</td>
+						<td><input type="text" name="agentname" value = "<?=$name?>"></td>
+					</tr>
+					<tr>
+						<td>Contact:</td>
+						<td><input type="text" name="contact" value = "<?=$contact?>"></td>
+					</tr>
+					<tr>
+						<td>Rating:</td>
+						<td><input type="text" name="rating" value = "<?=$rate?>"></td>
+					</tr>
+					<tr>
+						<td>Hiring Rate:</td>
+						<td><input type="text" name="hire" value = "<?=$hire?>"></td>
+					</tr>
+					<tr>
+						<td>
+							<input type="submit" name="submit" value = "Save">
+						</td>
+					</tr>
+				</form>
 			</table>
 		</fieldset>
 	</form>

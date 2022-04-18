@@ -1,21 +1,13 @@
 <?php 
+	session_start();
+	require('../Model/AgentModel.php');
 	$id = $_GET['cnt'];
-	$file = fopen('../Model/agent.txt', 'r');
-	while(!feof($file))
+	$agencyid = $_SESSION['current_agencyid'];
+	if(deleteagent($id, $agencyid))
 	{
-		$get = fgets($file);
-		$getarray = explode('|', $get);
-		if(isset(($getarray[6])) and trim($getarray[6]) == $id){
-			$string = $get;
-			break;
-		}
+		header('location: ../Views/Agency_agents.php');
 	}
-	print_r($string);
-	fclose($file);
-	$file = fopen('../Model/agent.txt', 'r');
-	fclose($file);
-	$file = '../Model/agent.txt';
-	file_put_contents($file,str_replace($string, "" ,file_get_contents($file)));
-
-	header('location: ../Views/Agency_agents.php');
+	else{
+		echo "An error occured";
+	}
 ?>
